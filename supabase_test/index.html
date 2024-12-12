@@ -48,7 +48,7 @@
     </nav>
   </div>
 
-  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog ">
       <div class="modal-content ">
         <div class="modal-header">
@@ -75,8 +75,15 @@
           <div class="row g-3 my-3">
             <div class="col-md">
               <div class="form-floating">
-                <input type="number" class="form-control" id="floatingRoomNumberGrid" 
-                  >
+                <select class="form-select" id="floatingRoomNumberGrid" >
+                  <option selected></option>
+                  <option >1</option>
+                  <option >2</option>
+                  <option >3</option>
+                  <option >4</option>
+                  <option >5</option>
+                  <option >6</option>
+                  </select>
                 <label for="floatingRoomNumberGrid">Sala</label>
               </div>
             </div>
@@ -91,7 +98,7 @@
             <div class="col-md">
               <div class="form-floating">
                 <select class="form-select" id="floatingSelectGrid">
-                  <option selected>Selecione um horário</option>
+                  <option selected></option>
                   <option >08:00</option>
                   <option >09:00</option>
                   <option >10:00</option>
@@ -112,7 +119,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-success">Save changes</button>
         </div>
       </div>

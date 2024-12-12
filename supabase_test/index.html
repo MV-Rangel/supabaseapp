@@ -5,123 +5,137 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="./src/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Reserva de salas</title>
-  <style>
-    .add_a_reservation:hover {
-      cursor: pointer
-    }
-  </style>
 </head>
 
 <body>
-  <div class="container my-5">
+
+  <main class="container my-5 rounded  p-2">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand fs-1" href="#">Reserva de salas</a>
+        <a class="navbar-brand" href="#">
+          <h2>Reserva de salas</h2>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <form class="d-flex ms-auto me-3" role="search">
-            <div class="input-group">
-
-              <input type="search" class="form-control" placeholder="Search" aria-label="search bar"
-                aria-describedby="search_icon">
-              <span class="input-group-text" id="search_icon"><i class="bi bi-search"></i></span>
-            </div>
-          </form>
-          <ul class="navbar-nav flex-row justify-content-start">
-            <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <a class="nav-link" href="#"><i class="bi bi-plus-circle fs-2 mx-2"></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-person-circle fs-2 mx-2"></i></a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <div class="d-flex align-items-center justify-content-around">
+            <form class="d-flex me-3 w-75" role="search">
+              <div class="input-group">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                  spellcheck="false" data-ms-editor="true">
+                <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+              </div>
+            </form>
+            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                class="bi bi-plus-circle fs-2 mx-2"></i></a>
+            <a href="#" class="nav-link"><i class="bi bi-person-circle fs-2 mx-2"></i></a>
+          </div>
         </div>
       </div>
     </nav>
+    <table class="table table-group-divider table-hover">
+      <thead>
+        <tr>
+          <th class="ths">Sala</th>
+          <th class="ths">Nome</th>
+          <th class="ths">Hora</th>
+          <th class="ths">Começa em</th>
+          <th class="ths">Termina em</th>
+        </tr>
+        <tr>
+          <td class="ths">1</td>
+          <td class="ths">Marcus</td>
+          <td class="ths">14h33m</td>
+          <td class="ths">2h 10m</td>
+          <td class="ths">1h</td>
+        </tr>
+      </thead>
+    </table>
+
+
+    <hr style="width:360px; color:red;">
   </div>
 
-  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog ">
-      <div class="modal-content ">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body ">
-          <div class="row g-3 my-3">
-            <div class="col-md">
-              <div class="form-floating">
-                <input type="text" class="form-control" id="floatingNameGrid" placeholder="João Souza Silva"
-                  >
-                <label for="floatingNameGrid">Nome</label>
+        <form id="meuForm">
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="text" class="form-control student_name" id="floatingNameGrid"
+                    placeholder="João Souza Silva" required>
+                  <label for="floatingNameGrid">Nome</label>
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="floatingResgisterGrid" placeholder="matrícula" required>
+                  <label for="floatingResgisterGrid">Matrícula</label>
+                </div>
               </div>
             </div>
-            <div class="col-md">
-              <div class="form-floating">
-                <input type="number" class="form-control" id="floatingResgisterGrid" placeholder="matrícula"
-                  >
-                <label for="floatingResgisterGrid">Matrícula</label>
-              </div>
-            </div>
-          </div>
-          <div class="row g-3 my-3">
-            <div class="col-md">
-              <div class="form-floating">
-                <select class="form-select" id="floatingRoomNumberGrid" >
-                  <option selected></option>
-                  <option >1</option>
-                  <option >2</option>
-                  <option >3</option>
-                  <option >4</option>
-                  <option >5</option>
-                  <option >6</option>
+            <div class="row g-3 my-3">
+              <div class="col-md">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingRoomNumberGrid" required>
+                    <option value="" selected disabled></option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
                   </select>
-                <label for="floatingRoomNumberGrid">Sala</label>
+                  <label for="floatingRoomNumberGrid">Sala</label>
+                </div>
               </div>
-            </div>
-            <div class="col-md">
-              <div class="form-floating">
-                <input type="date" class="form-control" id="floatingDateGrid" 
-
-                  >
-                <label for="floatingDateGrid">Data</label>
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="date" class="form-control" id="floatingDateGrid" required>
+                  <label for="floatingDateGrid">Data</label>
+                </div>
               </div>
-            </div>
-            <div class="col-md">
-              <div class="form-floating">
-                <select class="form-select" id="floatingSelectGrid">
-                  <option selected></option>
-                  <option >08:00</option>
-                  <option >09:00</option>
-                  <option >10:00</option>
-                  <option >10:00</option>
-                  <option >11:00</option>
-                  <option >12:00</option>
-                  <option >13:00</option>
-                  <option >14:00</option>
-                  <option >15:00</option>
-                  <option >16:00</option>
-                  <option >17:00</option>
-                  <option >18:00</option>
-                  <option >19:00</option>
-                </select>
-                <label for="floatingSelectGrid">Horário</label>
+              <div class="col-md">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelectGrid" required>
+                    <option value="" selected disabled>Selecione um horário</option>
+                    <option>08:00</option>
+                    <option>09:00</option>
+                    <option>10:00</option>
+                    <option>11:00</option>
+                    <option>12:00</option>
+                    <option>13:00</option>
+                    <option>14:00</option>
+                    <option>15:00</option>
+                    <option>16:00</option>
+                    <option>17:00</option>
+                    <option>18:00</option>
+                    <option>19:00</option>
+                  </select>
+                  <label for="floatingSelectGrid">Horário</label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success">Save changes</button>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-warning cancel_button"
+              >Cancelar</button>
+            <button type="submit" class="btn btn-success">Salvar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

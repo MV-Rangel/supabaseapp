@@ -22,16 +22,29 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const getUsers = async () => {
     let { data: user, error } = await supabase.from("user").select("*");
+
     for (let i = 0; i < user.length; i++) {
+      let time_to_begin = 5;
+      const timer = () => {
+        const time_to_start = document.querySelectorAll(".time_to_start");
+        time_to_start[i].innerText = time_to_begin--;
+        time_to_begin < 0 ? clearInterval(timeToStart) : null;
+      };
+      const timeToStart = setInterval(timer, 1000);
       console.log(user[i].user_name);
       const table_row = document.createElement("tr");
       table_row.innerHTML = `<td class="ths">${user[i].room_number}</td>
             <td class="ths">${user[i].user_name}</td>
+            <td class="ths">${user[i].reservation_date}</td>
             <td class="ths">${user[i].reservation_time}</td>
-            <td class="ths">time to begin</td>
+            <td class="ths time_to_start"></td>
             <td class="ths">time left</td>`;
       table_body.append(table_row);
+      const now = new Date()
+    const minutes  = now.getHours()
+    console.log(parseInt(user[i].reservation_time)- minutes)
     }
+    
   };
   getUsers();
 
@@ -67,6 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     table_row.innerHTML = `  <td class="ths">${registration.roomNumber}</td>
             <td class="ths">${registration.userName}</td>
+            <td class="ths">${registration.reservation_date}</td>
             <td class="ths">${registration.reservationTime}</td>
             <td class="ths">time to begin</td>
             <td class="ths">time left</td>`;

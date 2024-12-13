@@ -8,28 +8,77 @@ document.addEventListener("DOMContentLoaded", async () => {
   const main_form = document.querySelector("#meuForm");
   const student_name = document.querySelector("#floatingNameGrid");
   const cancelarBtn = document.querySelector(".cancel_button");
+  const floatingRoomNumberGrid = document.querySelector(
+    "#floatingRoomNumberGrid"
+  );
+  const floatingResgisterGrid = document.querySelector(
+    "#floatingResgisterGrid"
+  );
+  const floatingSelectTimeGrid = document.querySelector(
+    "#floatingSelectTimeGrid"
+  );
+  const floatingDateGrid = document.querySelector("#floatingDateGrid");
   const table_body = document.querySelector(".table_body");
+
+  
+
+  const getUsers = async () => {
+    let { data: user, error } = await supabase.from("user").select("*");
+    for(let i = 0;i<user.length;i++){
+      console.log(user[i].user_name)
+      const table_row = document.createElement("tr");
+      table_row.innerHTML = `<td class="ths">${user[i].room_number}</td>
+            <td class="ths">${user[i].user_name}</td>
+            <td class="ths">${user[i].reservation_time}</td>
+            <td class="ths">time to begin</td>
+            <td class="ths">time left</td>`
+      table_body.append(table_row)
+
+    }
+  };
+  getUsers();
 
   main_form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const registration = {
+      roomNumber: floatingRoomNumberGrid.value,
       userName: student_name.value,
+      resgistrationNumber: floatingResgisterGrid.value,
+      reservationTime: floatingSelectTimeGrid.value,
+      reservationDate: floatingDateGrid.value,
     };
-try{
-    if (registration.userName) {
+    try {
+      if (registration.userName) {
         const { data, error } = await supabase
           .from("user")
-          .insert([{ user_name: `${registration.userName}` }])
+          .insert([
+            {
+              room_number: `${registration.roomNumber}`,
+              registration_number: `${registration.resgistrationNumber}`,
+              user_name: `${registration.userName}`,
+              reservation_date: `${registration.reservationDate}`,
+              reservation_time: `${registration.reservationTime}`,
+            },
+          ])
           .select();
       }
-}catch(error){
-    console.log("Não consegui ")
-}
-   
+    } catch (error) {
+      console.log("Não consegui ");
+    }
 
+    const table_row = document.createElement("tr");
+    
+    table_row.innerHTML = `  <td class="ths">${registration.roomNumber}</td>
+            <td class="ths">${registration.userName}</td>
+            <td class="ths">${registration.reservationTime}</td>
+            <td class="ths">time to begin</td>
+            <td class="ths">time left</td>`;
+    table_body.append(table_row);
+    console.log(registration);
     main_form.reset();
-    console.log();
   });
+
+  
 
   cancelarBtn.addEventListener("click", () => {
     main_form.reset();

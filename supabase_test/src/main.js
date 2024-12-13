@@ -20,20 +20,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   const floatingDateGrid = document.querySelector("#floatingDateGrid");
   const table_body = document.querySelector(".table_body");
 
-  
-
   const getUsers = async () => {
     let { data: user, error } = await supabase.from("user").select("*");
-    for(let i = 0;i<user.length;i++){
-      console.log(user[i].user_name)
+    for (let i = 0; i < user.length; i++) {
+      console.log(user[i].user_name);
       const table_row = document.createElement("tr");
       table_row.innerHTML = `<td class="ths">${user[i].room_number}</td>
             <td class="ths">${user[i].user_name}</td>
             <td class="ths">${user[i].reservation_time}</td>
             <td class="ths">time to begin</td>
-            <td class="ths">time left</td>`
-      table_body.append(table_row)
-
+            <td class="ths">time left</td>`;
+      table_body.append(table_row);
     }
   };
   getUsers();
@@ -67,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const table_row = document.createElement("tr");
-    
+
     table_row.innerHTML = `  <td class="ths">${registration.roomNumber}</td>
             <td class="ths">${registration.userName}</td>
             <td class="ths">${registration.reservationTime}</td>
@@ -77,8 +74,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(registration);
     main_form.reset();
   });
-
-  
 
   cancelarBtn.addEventListener("click", () => {
     main_form.reset();

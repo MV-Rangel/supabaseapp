@@ -14,3 +14,6 @@
   font-size: clamp(0.8125rem, 0.7031rem + 0.4861vw, 1.25rem);
 }
 
+i.bi.bi-trash:hover{
+cursor:pointer
+}

@@ -150,59 +150,42 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   main_form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const registration = {
-      roomNumber: room_number.value,
-      userName: student_name.value,
-      resgistrationNumber: registration_number.value,
-      reservationTime: reservation_time.value,
-      reservationDate: reservation_date.value,
-    };
+  e.preventDefault();
+  const registration = {
+    roomNumber: room_number.value,
+    userName: student_name.value,
+    resgistrationNumber: registration_number.value,
+    reservationTime: reservation_time.value,
+    reservationDate: reservation_date.value,
+  };
 
-    try {
-      if (registration.userName) {
-        const { data, error } = await supabase
-          .from("user")
-          .insert([
-            {
-              room_number: registration.roomNumber,
-              registration_number: registration.resgistrationNumber,
-              user_name: registration.userName,
-              reservation_date: registration.reservationDate,
-              reservation_time: registration.reservationTime,
-            },
-          ])
-          .select();
+  try {
+    if (registration.userName) {
+      const { error } = await supabase
+        .from("user")
+        .insert([
+          {
+            room_number: registration.roomNumber,
+            registration_number: registration.resgistrationNumber,
+            user_name: registration.userName,
+            reservation_date: registration.reservationDate,
+            reservation_time: registration.reservationTime,
+          },
+        ]);
 
-        if (error) throw error;
+      if (error) throw error;
 
-        if (data && data[0]) {
-          const table_row = document.createElement("tr");
-          table_row.innerHTML = `
-          <td class="ths">${registration.roomNumber}</td>
-          <td class="ths">${registration.userName}</td>
-          <td class="ths">${formatDate(registration.reservationDate)}</td>
-          <td class="ths">${formatTime(registration.reservationTime)}</td>
-          <td class="countdown ths" data-date="${
-            registration.reservationDate
-          }" data-time="${registration.reservationTime}"></td>
-          <td class="ths time_left"></td>
-          <td class="border-0">
-          <i class="bi bi-trash btn-remove text-primary" data-id="${
-            data[0].id
-          }"></i></td>
-        `;
-
-          table_body.append(table_row);
-          addRemoveListeners();
-        }
-      }
-    } catch (error) {
-      console.error("Erro ao registrar usuário:", error);
+      // Atualiza a tabela chamando getUsers()
+      await getUsers();
+      
+      // Reseta o formulário
+      main_form.reset();
     }
-    updateCountdown();
-    main_form.reset();
-  });
+  } catch (error) {
+    console.error("Erro ao registrar usuário:", error);
+  }
+});
+
 
   cancelarBtn.addEventListener("click", () => {
     main_form.reset();

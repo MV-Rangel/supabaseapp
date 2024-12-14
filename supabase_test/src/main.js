@@ -26,7 +26,7 @@ function updateCountdown() {
 
     if (diff <= 0 && timeLeftDiff > 0) {
       // Reserva em andamento
-      element.innerHTML = `<span class="text-bg-success rounded p-1">Em andamento</span> <i class="bi bi-check-square-fill ms-1">`;
+      element.innerHTML = `<span class="text-bg-success rounded p-1">Em andamento</span> `;
       const duration = dayjs.duration(timeLeftDiff);
       const minutes = duration.minutes();
       const seconds = duration.seconds();

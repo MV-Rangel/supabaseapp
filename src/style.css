@@ -1,0 +1,20 @@
+.navbar-brand {
+  font-size: clamp(1.25rem, 1.0938rem + 0.6944vw, 1.875rem);
+}
+
+.ths {
+  font-size: clamp(0.6875rem, 0.5781rem + 0.4861vw, 1.125rem);
+}
+.table-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar-toggler-icon {
+  font-size: clamp(0.8125rem, 0.7031rem + 0.4861vw, 1.25rem);
+}
+
+i.bi.bi-trash:hover{
+cursor:pointer;
+
+}

@@ -1,0 +1,23 @@
+{
+  "name": "supabase_test",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "node main.js",
+    "build": "node node_modules/vite/bin/vite.js build"
+  },
+  "devDependencies": {
+    "vite": "^6.0.1"
+  },
+  "dependencies": {
+    "@date-fns/tz": "^1.2.0",
+    "@supabase/supabase-js": "^2.47.8",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
+    "luxon": "^3.5.0"
+  }
+}
